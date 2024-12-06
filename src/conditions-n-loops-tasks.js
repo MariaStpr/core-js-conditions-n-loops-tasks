@@ -114,8 +114,32 @@ function isIsoscelesTriangle(a, b, c) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  let number = num;
+  let res = '';
+  while (number > 0) {
+    if (number >= 10) {
+      res += 'X';
+      number -= 10;
+    }
+    if (number >= 5 && number < 9) {
+      res += 'V';
+      number -= 5;
+    }
+    if (number === 4) {
+      res += 'IV';
+      number -= 4;
+    }
+    if (number === 9) {
+      res += 'IX';
+      number -= 9;
+    }
+    if (number < 5 && number > 0) {
+      res += 'I';
+      number -= 1;
+    }
+  }
+  return res;
 }
 
 /**
@@ -134,27 +158,57 @@ function convertToRomanNumerals(/* num */) {
  *  '1950.2'  => 'one nine five zero point two'
  */
 function convertNumberToString(numberStr) {
-  // const num = numberStr;
-  // let res = '';
-  // for (let i = 0; i < num.length; i += 1) {
-  //   if (num[i] === '-') res += 'minus';
-  //   if (num[i] === '0') res += 'zero';
-  //   if (num[i] === '1') res += 'one';
-  //   if (num[i] === '2') res += 'two';
-  //   if (num[i] === '3') res += 'three';
-  //   if (num[i] === '4') res += 'four';
-  //   if (num[i] === '5') res += 'five';
-  //   if (num[i] === '6') res += 'six';
-  //   if (num[i] === '7') res += 'seven';
-  //   if (num[i] === '8') res += 'eight';
-  //   if (num[i] === '9') res += 'nine';
-  //   if (num[i] === '.' || num[i] === ',') res += 'point';
-  //   if (i < num.length - 1) res += ' ';
-  // }
-  // return res;
-  throw new Error('Not implemented');
+  const num = numberStr;
+  let res = '';
+  for (let i = 0; i < num.length; i += 1) {
+    switch (num[i]) {
+      case '-':
+        res += 'minus';
+        break;
+      case '0':
+        res += 'zero';
+        break;
+      case '1':
+        res += 'one';
+        break;
+      case '2':
+        res += 'two';
+        break;
+      case '3':
+        res += 'three';
+        break;
+      case '4':
+        res += 'four';
+        break;
+      case '5':
+        res += 'five';
+        break;
+      case '6':
+        res += 'six';
+        break;
+      case '7':
+        res += 'seven';
+        break;
+      case '8':
+        res += 'eight';
+        break;
+      case '9':
+        res += 'nine';
+        break;
+      case '.':
+        res += 'point';
+        break;
+      case ',':
+        res += 'point';
+        break;
+      default:
+        res += '';
+    }
+    if (i < num.length - 1) res += ' ';
+  }
+  return res;
 }
-
+console.log(convertNumberToString('1950.2'));
 /**
  * Determines whether a string is a palindrome.
  * In this task, the use of methods of the String and Array classes is not allowed.
@@ -189,8 +243,13 @@ function isPalindrome(str) {
  *  'qwerty', 'Q'     => -1
  *  'qwerty', 'p'     => -1
  */
-function getIndexOf(/* str, letter */) {
-  throw new Error('Not implemented');
+function getIndexOf(str, letter) {
+  let res;
+  for (let i = 0; i < str.length; i += 1) {
+    if (str[i] === letter) res = i;
+  }
+  if (res === undefined) return -1;
+  return res;
 }
 
 /**
@@ -208,8 +267,13 @@ function getIndexOf(/* str, letter */) {
  *  12345, 0    => false
  *  12345, 6    => false
  */
-function isContainNumber(/* num, digit */) {
-  throw new Error('Not implemented');
+function isContainNumber(num, digit) {
+  const number = String(num);
+  let res = false;
+  for (let i = 0; i < number.length; i += 1) {
+    if (+number[i] === +digit) res = true;
+  }
+  return res;
 }
 
 /**
@@ -225,8 +289,21 @@ function isContainNumber(/* num, digit */) {
  *  [2, 3, 9, 5] => 2       => 2 + 3 === 5 then balance element is 9 and its index = 2
  *  [1, 2, 3, 4, 5] => -1   => no balance element
  */
-function getBalanceIndex(/* arr */) {
-  throw new Error('Not implemented');
+function getBalanceIndex(arr) {
+  for (let i = 1; i < arr.length; i += 1) {
+    let leftSum = 0;
+    for (let j = i - 1; j >= 0; j -= 1) {
+      leftSum += arr[j];
+    }
+    let rightSum = 0;
+    for (let k = i + 1; k < arr.length; k += 1) {
+      rightSum += arr[k];
+    }
+    if (leftSum === rightSum) {
+      return i;
+    }
+  }
+  return -1;
 }
 
 /**
