@@ -208,7 +208,6 @@ function convertNumberToString(numberStr) {
   }
   return res;
 }
-console.log(convertNumberToString('1950.2'));
 /**
  * Determines whether a string is a palindrome.
  * In this task, the use of methods of the String and Array classes is not allowed.
