@@ -397,20 +397,31 @@ function sortByAsc(arr) {
  *  'qwerty', 3 => 'qetwry' => 'qtrewy' => 'qrwtey'
  */
 function shuffleChar(str, iterations) {
-  let res = str;
-  let iter = iterations;
-  for (let i = 1; i < str.length; i += 2) {
-    res =
-      res.slice(0, res.indexOf(str[i])) +
-      res.slice(res.indexOf(str[i]) + 1, res.length) +
-      res[res.indexOf(str[i])];
+  if (str.length === 0) return '';
+  if (iterations === 0) return str;
+  const effectiveIterations = iterations % (str.length - 2);
+  if (effectiveIterations === 0) {
+    return str;
   }
+  let evenChars = '';
+  let oddChars = '';
+  for (let i = 0; i < str.length; i += 1) {
+    if (i % 2 === 0) {
+      evenChars += str[i];
+    } else {
+      oddChars += str[i];
+    }
+  }
+  let res = evenChars + oddChars;
+  let iter = effectiveIterations;
   iter -= 1;
-  if (iter !== 0) {
+  if (iter) {
     res = shuffleChar(res, iter);
   }
   return res;
 }
+
+console.log(shuffleChar('012345', 8));
 
 /**
  * Returns the nearest largest integer consisting of the digits of the given positive integer.
