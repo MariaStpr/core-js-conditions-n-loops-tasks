@@ -421,8 +421,6 @@ function shuffleChar(str, iterations) {
   return res;
 }
 
-console.log(shuffleChar('012345', 8));
-
 /**
  * Returns the nearest largest integer consisting of the digits of the given positive integer.
  * If there is no such number, it returns the original number.
